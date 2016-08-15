@@ -1,0 +1,58 @@
+﻿<div ng-controller="Main" class="container">
+
+    <!--
+    List Reports
+    -->
+    
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Select Workspace
+            <select ng-show="workspaces" ng-model="selectedWorkspace">
+                <option ng-repeat="workspace in workspaces" value="{{workspace.id}}">{{workspace.name}}</option>
+            </select>
+            <i ng-show="!reports && !reportError" class="fa fa-spinner fa-spin"></i>
+            <i ng-show="reportError" class="fa fa-warning text-color-error" data-toggle="tooltip" data-placement="left" title="{{reportError}}"></i>
+        </div>
+
+      <!-- <div ng-show="reports" class="panel-scroll">
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                 
+                </tr>
+                <tr ng-repeat="report in reports">
+                    <td><a href="{{report.webUrl}}">{{report.name}}</a></td>
+                   
+                </tr>
+            </table>
+        </div>-->
+    </div>
+
+    <!--
+    Embed Report
+    -->
+
+    <div class="panel panel-default">
+        <table>
+            <tr>
+                <td>
+                    <div class="panel-heading">
+                        Select Report
+                        <select ng-show="reports" ng-model="selectedReport">
+                            <option ng-repeat="report in reports" value="{{report.embedUrl}}">{{report.name}}</option>
+                        </select>
+                        <i ng-show="!reports && !reportError" class="fa fa-spinner fa-spin"></i>
+                    </div>
+                </td>
+                <td><button id="printbutton1">Open in Power BI</button></td>
+
+            </tr>
+        </table>
+
+        <div class="row">
+          <iframe id="report" ng-show="selectedReport" src="{{selectedReport}}" frameborder="0" seamless style="height: 768px;" class="col-sm-12"></iframe>
+            <!-- <iframe id="report" ng-show="selectedReport" src="{{selectedReport}}" frameborder="0" seamless style="height: 400px;" class="col-sm-12"></iframe>-->
+        </div>
+    </div>
+
+</div>
